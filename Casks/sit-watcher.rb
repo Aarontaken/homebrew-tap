@@ -15,10 +15,11 @@ cask "sit-watcher" do
     target = "/Applications/SitWatcher.app"
     user = ENV["USER"]
 
-    # Install with a single sudo call: copy + fix ownership + remove quarantine
+    # Single sudo call: copy + fix ownership.
+    # No xattr needed — Homebrew downloads via curl, files are not quarantined.
     system_command "/bin/bash", args: [
       "-c",
-      "rm -rf '#{target}' && cp -R '#{app_path}' '/Applications/' && chown -R #{user}:staff '#{target}' && xattr -dr com.apple.quarantine '#{target}'"
+      "rm -rf '#{target}' && cp -R '#{app_path}' '/Applications/' && chown -R #{user}:staff '#{target}'"
     ], sudo: true
 
     # Launch the app as current user
