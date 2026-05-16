@@ -1,8 +1,8 @@
 cask "sit-watcher" do
-  version "1.0.4"
+  version :latest
   sha256 :no_check
 
-  url "https://github.com/Aarontaken/sit-watcher/releases/download/v#{version}/SitWatcher.dmg",
+  url "https://github.com/Aarontaken/sit-watcher/releases/latest/download/SitWatcher.dmg",
       verified: "github.com/Aarontaken/sit-watcher/"
   name "SitWatcher"
   desc "Menu bar sitting reminder with progressive escalation"
