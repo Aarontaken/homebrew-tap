@@ -15,19 +15,13 @@ cask "sit-watcher" do
     target = "/Applications/SitWatcher.app"
     user = ENV["USER"]
 
-    # Remove old version if present
-    system_command "/bin/rm", args: ["-rf", target], sudo: true
+    # Install with a single sudo call: copy + fix ownership + remove quarantine
+    system_command "/bin/bash", args: [
+      "-c",
+      "rm -rf '#{target}' && cp -R '#{app_path}' '/Applications/' && chown -R #{user}:staff '#{target}' && xattr -dr com.apple.quarantine '#{target}'"
+    ], sudo: true
 
-    # Copy to /Applications
-    system_command "/bin/cp", args: ["-R", app_path, "/Applications/"], sudo: true
-
-    # Fix ownership (sudo cp creates root-owned files)
-    system_command "/usr/sbin/chown", args: ["-R", "#{user}:staff", target], sudo: true
-
-    # Remove quarantine flag
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", target]
-
-    # Launch the app
+    # Launch the app as current user
     system_command "/usr/bin/open", args: [target]
   end
 
