@@ -10,8 +10,6 @@ cask "sit-watcher" do
 
   auto_updates true
 
-  app "SitWatcher.app"
-
   postflight do
     app_path = "#{staged_path}/SitWatcher.app"
     target = "/Applications/SitWatcher.app"
