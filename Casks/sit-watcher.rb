@@ -13,6 +13,7 @@ cask "sit-watcher" do
   postflight do
     app_path = "#{staged_path}/SitWatcher.app"
     target = "/Applications/SitWatcher.app"
+    user = ENV["USER"]
 
     # Remove old version if present
     system_command "/bin/rm", args: ["-rf", target], sudo: true
@@ -20,8 +21,11 @@ cask "sit-watcher" do
     # Copy to /Applications
     system_command "/bin/cp", args: ["-R", app_path, "/Applications/"], sudo: true
 
-    # Remove quarantine flag (Homebrew doesn't quarantine, but sigined app may trigger)
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", target], sudo: false
+    # Fix ownership (sudo cp creates root-owned files)
+    system_command "/usr/sbin/chown", args: ["-R", "#{user}:staff", target], sudo: true
+
+    # Remove quarantine flag
+    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", target]
 
     # Launch the app
     system_command "/usr/bin/open", args: [target]
