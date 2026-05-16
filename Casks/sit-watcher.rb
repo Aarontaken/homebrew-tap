@@ -10,26 +10,15 @@ cask "sit-watcher" do
 
   auto_updates true
 
+  app "SitWatcher.app"
+
   postflight do
-    app_path = "#{staged_path}/SitWatcher.app"
-    target = "/Applications/SitWatcher.app"
-    user = ENV["USER"]
-
-    # Single sudo call: copy + fix ownership.
-    # No xattr needed — Homebrew downloads via curl, files are not quarantined.
-    system_command "/bin/bash", args: [
-      "-c",
-      "rm -rf '#{target}' && cp -R '#{app_path}' '/Applications/' && chown -R #{user}:staff '#{target}'"
-    ], sudo: true
-
-    # Launch the app as current user
-    system_command "/usr/bin/open", args: [target]
+    system_command "/usr/bin/open", args: ["/Applications/SitWatcher.app"]
   end
 
   uninstall delete: "/Applications/SitWatcher.app"
 
   caveats <<~EOS
-    SitWatcher is auto-installed to /Applications and launched after brew install.
     Future updates are handled automatically via Sparkle.
   EOS
 end
