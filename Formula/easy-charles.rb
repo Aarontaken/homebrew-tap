@@ -1,25 +1,25 @@
 class EasyCharles < Formula
   desc "Android-first HTTP/HTTPS debugging proxy with an embedded WebUI"
   homepage "https://github.com/Aarontaken/easy-charles"
-  version "0.1.0"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.1.0/easy-charles-cli-aarch64-apple-darwin.tar.xz"
-      sha256 "7fb30bc147cc1989dc7143dceb6928770151e46edfa5613d924bc38c88947095"
+      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.2.0/easy-charles-cli-aarch64-apple-darwin.tar.xz"
+      sha256 "4d145467e11b51cd54defea1170e31ab4663500a63eacde7ccbeead64863b1aa"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.1.0/easy-charles-cli-x86_64-apple-darwin.tar.xz"
-      sha256 "a96ebc52c1362bceb9e3243d2bd30b42908a097c7c4036d442be0e72197c83d2"
+      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.2.0/easy-charles-cli-x86_64-apple-darwin.tar.xz"
+      sha256 "70285bb48bf0eb02121e4726282ab0644f95d7af44e4d1a3faae2b885ddb4f38"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.1.0/easy-charles-cli-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "df435e47015843423c26085647a901ffd150f792b22923212ce51f83ba2561a5"
+      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.2.0/easy-charles-cli-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "dfcb9e8549940a787015b71f9f2e279b776b248d33d7787b8a1c85f101dbb4bb"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.1.0/easy-charles-cli-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "9349720d71243eef6d893ec4a1d96cd6a352096f158a31e9b4202e0cd985fcbb"
+      url "https://github.com/Aarontaken/easy-charles/releases/download/v0.2.0/easy-charles-cli-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "273d63bde287d268b2454f8932dc93e72009ef0b292fa1806fe08e4a471b75fa"
     end
   end
   license "MIT"
